@@ -16,6 +16,7 @@
 		55299509298821D600F71466 /* PenguinPayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299508298821D600F71466 /* PenguinPayUITestsLaunchTests.swift */; };
 		552995312988688000F71466 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552995302988688000F71466 /* Images.xcassets */; };
 		552995512988A60800F71466 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552995502988A60800F71466 /* MainViewPresenter.swift */; };
+		552995542988E57A00F71466 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552995532988E57A00F71466 /* Country.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		55299508298821D600F71466 /* PenguinPayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinPayUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		552995302988688000F71466 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		552995502988A60800F71466 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
+		552995532988E57A00F71466 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		552994E9298821D300F71466 /* PenguinPay */ = {
 			isa = PBXGroup;
 			children = (
+				552995522988E56800F71466 /* Models */,
 				5529953429886DC100F71466 /* Interactors */,
 				5529953329886DA000F71466 /* Presenters */,
 				5529953229886D8F00F71466 /* Views */,
@@ -157,6 +160,14 @@
 			children = (
 			);
 			path = Interactors;
+			sourceTree = "<group>";
+		};
+		552995522988E56800F71466 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				552995532988E57A00F71466 /* Country.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552995542988E57A00F71466 /* Country.swift in Sources */,
 				552994ED298821D300F71466 /* MainView.swift in Sources */,
 				552994EB298821D300F71466 /* PenguinPayApp.swift in Sources */,
 				552995512988A60800F71466 /* MainViewPresenter.swift in Sources */,

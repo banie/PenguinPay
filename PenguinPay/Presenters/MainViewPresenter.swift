@@ -11,6 +11,10 @@ import SwiftUI
 class MainViewPresenter: ObservableObject {
     @Published var moneyToBeSent: String
     @Published var moneyForRecepient: String
+    @Published var countries = [Country(currencyCode: "KES", displayName: "Kenya", flagIconName: "kenya-flag"),
+                     Country(currencyCode: "NGN", displayName: "Nigeria", flagIconName: "nigeria-flag"),
+                     Country(currencyCode: "TZS", displayName: "Tanzania", flagIconName: "tanzania-flag"),
+                     Country(currencyCode: "UGX", displayName: "Uganda", flagIconName: "uganda-flag")]
     
     init() {
         self.moneyToBeSent = ""

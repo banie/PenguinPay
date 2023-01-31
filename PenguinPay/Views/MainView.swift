@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var presenter = MainViewPresenter()
+    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var phoneNumber: String = ""
-    
-    @ObservedObject var presenter = MainViewPresenter()
+    @State private var selectedCountry = "Nigeria"
     
     var body: some View {
         NavigationView {
@@ -20,6 +21,18 @@ struct MainView: View {
                 HStack {
                     Text("Send money to")
                         .font(.headline)
+                    Spacer()
+                    Picker("Select a country", selection: $selectedCountry) {
+                        ForEach(presenter.countries) { country in
+                            HStack {
+                                Image(country.flagIconName)
+                                    .padding()
+                                Text(country.displayName)
+                                    .font(.headline)
+                            }
+                        }
+                    }
+                    .pickerStyle(.menu)
                 }
                 Text("Recipient")
                     .font(.subheadline)
