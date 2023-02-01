@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MainView: View {
     @State private var firstName: String = ""
@@ -17,7 +18,6 @@ struct MainView: View {
     
     var body: some View {
         let supportedCountries = SupportedCountries()
-        presenter.moneyForRecepient
         
         NavigationView {
             VStack(alignment: .leading, spacing: 20.0) {
@@ -38,6 +38,7 @@ struct MainView: View {
                     .onChange(of: selectedCountry) { country in
                         presenter.selectedCountry = country
                     }
+                    .disabled(presenter.sendStatus == .sending)
                 }
                 Text("Recipient")
                     .font(.subheadline)
@@ -49,6 +50,7 @@ struct MainView: View {
                         TextField("", text: $firstName)
                             .keyboardType(.namePhonePad)
                             .frame(maxWidth: .infinity)
+                            .disabled(presenter.sendStatus == .sending)
                     }
                     .padding()
                         .overlay(
@@ -63,6 +65,7 @@ struct MainView: View {
                         TextField("", text: $lastName)
                             .keyboardType(.namePhonePad)
                             .frame(maxWidth: .infinity)
+                            .disabled(presenter.sendStatus == .sending)
                     }
                     .padding()
                         .overlay(
@@ -77,6 +80,7 @@ struct MainView: View {
                     TextField("", text: $phoneNumber)
                         .keyboardType(.asciiCapableNumberPad)
                         .frame(maxWidth: .infinity)
+                        .disabled(presenter.sendStatus == .sending)
                 }.padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
@@ -93,6 +97,14 @@ struct MainView: View {
                         .disabled(true)
                 }
                 .padding()
+                .alert("Your money has been sent", isPresented: $presenter.showAlertDone) {
+                            Button("OK", role: .cancel) {
+                                presenter.showAlertDone = false
+                                firstName = ""
+                                lastName = ""
+                                phoneNumber = ""
+                            }
+                        }
 
                 VStack {
                     Text("You send")
@@ -120,6 +132,7 @@ struct MainView: View {
                             .background(.yellow)
                             .cornerRadius(16)
                     })
+                    .disabled(presenter.sendStatus == .sending)
                     
                     Button(action: {
                         presenter.addZero()
@@ -132,10 +145,11 @@ struct MainView: View {
                             .background(.yellow)
                             .cornerRadius(16)
                     })
+                    .disabled(presenter.sendStatus == .sending)
                 }
                 
                 Button(action: {
-                    print("Send")
+                    presenter.sendMoney()
                 }, label: {
                     Text("Send")
                         .frame(maxWidth: .infinity)
@@ -145,6 +159,7 @@ struct MainView: View {
                         .background(.yellow)
                         .cornerRadius(20)
                 })
+                .disabled(presenter.sendStatus == .sending)
             }
             .frame(
                 minWidth: 0,
@@ -153,6 +168,7 @@ struct MainView: View {
                 maxHeight: .infinity,
                 alignment: .topLeading
             )
+            .opacity(presenter.sendStatus == .sending ? 0.5 : 1.0)
             .padding(EdgeInsets(top: 20, leading: 20, bottom: 10, trailing: 20))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

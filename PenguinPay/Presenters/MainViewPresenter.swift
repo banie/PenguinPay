@@ -7,8 +7,17 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class MainViewPresenter: ObservableObject {
+    enum SendStatus {
+        case sending
+        case idle
+        case failed
+    }
+    
+    @Published var sendStatus: SendStatus
+    @Published var showAlertDone: Bool
     @Published var moneyToBeSent: String
     @Published var moneyForRecepient: String
     
@@ -21,6 +30,8 @@ class MainViewPresenter: ObservableObject {
     private var currencyRates: CurrencyRates?
     
     init(selectedCountry: Country) {
+        self.sendStatus = .idle
+        self.showAlertDone = false
         self.moneyToBeSent = ""
         self.moneyForRecepient = ""
         self.selectedCountry = selectedCountry
@@ -42,6 +53,16 @@ class MainViewPresenter: ObservableObject {
             currencyRates = try await getCurrencyRatesInteractor.getCurrencyRates()
         } catch {
             print("Failed in fetching currency rates, error: \(error)")
+        }
+    }
+    
+    func sendMoney() {
+        sendStatus = .sending
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.showAlertDone = true
+            self?.sendStatus = .idle
+            self?.moneyForRecepient = ""
+            self?.moneyToBeSent = ""
         }
     }
     
