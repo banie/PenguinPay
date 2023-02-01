@@ -17,6 +17,13 @@
 		552995312988688000F71466 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552995302988688000F71466 /* Images.xcassets */; };
 		552995512988A60800F71466 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552995502988A60800F71466 /* MainViewPresenter.swift */; };
 		552995542988E57A00F71466 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552995532988E57A00F71466 /* Country.swift */; };
+		552995572989F5C100F71466 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552995562989F5C100F71466 /* Constants.swift */; };
+		552995592989FB6400F71466 /* GetCountryRatesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552995582989FB6400F71466 /* GetCountryRatesInteractor.swift */; };
+		5529955B2989FF7400F71466 /* CurrencyRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529955A2989FF7400F71466 /* CurrencyRates.swift */; };
+		5529955D298A038B00F71466 /* GetCountryRatesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529955C298A038B00F71466 /* GetCountryRatesApi.swift */; };
+		55299561298A05B600F71466 /* GetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299560298A05B600F71466 /* GetInteractor.swift */; };
+		55299563298A09C600F71466 /* NetworkApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299562298A09C600F71466 /* NetworkApiError.swift */; };
+		55299581298A239200F71466 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299580298A239200F71466 /* URLRequest+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,13 @@
 		552995302988688000F71466 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		552995502988A60800F71466 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
 		552995532988E57A00F71466 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		552995562989F5C100F71466 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		552995582989FB6400F71466 /* GetCountryRatesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCountryRatesInteractor.swift; sourceTree = "<group>"; };
+		5529955A2989FF7400F71466 /* CurrencyRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRates.swift; sourceTree = "<group>"; };
+		5529955C298A038B00F71466 /* GetCountryRatesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCountryRatesApi.swift; sourceTree = "<group>"; };
+		55299560298A05B600F71466 /* GetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInteractor.swift; sourceTree = "<group>"; };
+		55299562298A09C600F71466 /* NetworkApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiError.swift; sourceTree = "<group>"; };
+		55299580298A239200F71466 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,12 +115,12 @@
 		552994E9298821D300F71466 /* PenguinPay */ = {
 			isa = PBXGroup;
 			children = (
-				552995522988E56800F71466 /* Models */,
+				5529957F298A236B00F71466 /* Extensions */,
+				552995552989F5A900F71466 /* Resources */,
+				552995522988E56800F71466 /* Entities */,
 				5529953429886DC100F71466 /* Interactors */,
 				5529953329886DA000F71466 /* Presenters */,
 				5529953229886D8F00F71466 /* Views */,
-				552994EE298821D500F71466 /* Color.xcassets */,
-				552995302988688000F71466 /* Images.xcassets */,
 				552994F0298821D500F71466 /* PenguinPay.entitlements */,
 				552994F1298821D500F71466 /* Preview Content */,
 			);
@@ -158,16 +172,55 @@
 		5529953429886DC100F71466 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				5529955E298A058A00F71466 /* interfaces */,
+				5529955F298A059800F71466 /* base */,
+				552995582989FB6400F71466 /* GetCountryRatesInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
 		};
-		552995522988E56800F71466 /* Models */ = {
+		552995522988E56800F71466 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				552995532988E57A00F71466 /* Country.swift */,
+				5529955A2989FF7400F71466 /* CurrencyRates.swift */,
 			);
-			path = Models;
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		552995552989F5A900F71466 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				552994EE298821D500F71466 /* Color.xcassets */,
+				552995302988688000F71466 /* Images.xcassets */,
+				552995562989F5C100F71466 /* Constants.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5529955E298A058A00F71466 /* interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				5529955C298A038B00F71466 /* GetCountryRatesApi.swift */,
+			);
+			path = interfaces;
+			sourceTree = "<group>";
+		};
+		5529955F298A059800F71466 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				55299560298A05B600F71466 /* GetInteractor.swift */,
+				55299562298A09C600F71466 /* NetworkApiError.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		5529957F298A236B00F71466 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				55299580298A239200F71466 /* URLRequest+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,10 +354,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5529955D298A038B00F71466 /* GetCountryRatesApi.swift in Sources */,
+				552995572989F5C100F71466 /* Constants.swift in Sources */,
 				552995542988E57A00F71466 /* Country.swift in Sources */,
+				552995592989FB6400F71466 /* GetCountryRatesInteractor.swift in Sources */,
+				55299561298A05B600F71466 /* GetInteractor.swift in Sources */,
+				5529955B2989FF7400F71466 /* CurrencyRates.swift in Sources */,
 				552994ED298821D300F71466 /* MainView.swift in Sources */,
 				552994EB298821D300F71466 /* PenguinPayApp.swift in Sources */,
 				552995512988A60800F71466 /* MainViewPresenter.swift in Sources */,
+				55299581298A239200F71466 /* URLRequest+Extension.swift in Sources */,
+				55299563298A09C600F71466 /* NetworkApiError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
