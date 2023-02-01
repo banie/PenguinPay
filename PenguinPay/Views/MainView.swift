@@ -8,31 +8,36 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var presenter = MainViewPresenter()
-    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var phoneNumber: String = ""
-    @State private var selectedCountry = "Nigeria"
+    @State private var selectedCountry = SupportedCountries().defaultSelected
+    
+    @ObservedObject var presenter = MainViewPresenter(selectedCountry: SupportedCountries().defaultSelected)
     
     var body: some View {
+        let supportedCountries = SupportedCountries()
+        presenter.moneyForRecepient
+        
         NavigationView {
             VStack(alignment: .leading, spacing: 20.0) {
                 HStack {
                     Text("Send money to")
                         .font(.headline)
                     Spacer()
-                    Picker("Select a country", selection: $selectedCountry) {
-                        ForEach(presenter.countries) { country in
-                            HStack {
+                    Picker("", selection: $selectedCountry) {
+                        ForEach(supportedCountries.available, id: \.id) { country in
+                            HStack(spacing: 20) {
                                 Image(country.flagIconName)
-                                    .padding()
                                 Text(country.displayName)
                                     .font(.headline)
-                            }
+                            }.tag(country)
                         }
                     }
                     .pickerStyle(.menu)
+                    .onChange(of: selectedCountry) { country in
+                        presenter.selectedCountry = country
+                    }
                 }
                 Text("Recipient")
                     .font(.subheadline)
@@ -79,7 +84,7 @@ struct MainView: View {
                     )
                 
                 VStack {
-                    Text("They received")
+                    Text(String(format: "They will receive in %@", selectedCountry.currencyCode))
                         .font(.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     TextField("", text: $presenter.moneyForRecepient)
@@ -105,9 +110,9 @@ struct MainView: View {
                     )
                 HStack {
                     Button(action: {
-                        presenter.addZero()
+                        presenter.addOne()
                     }, label: {
-                        Text("0")
+                        Text("1")
                             .frame(maxWidth: .infinity)
                             .font(.largeTitle)
                             .padding()
@@ -117,9 +122,9 @@ struct MainView: View {
                     })
                     
                     Button(action: {
-                        presenter.addOne()
+                        presenter.addZero()
                     }, label: {
-                        Text("1")
+                        Text("0")
                             .frame(maxWidth: .infinity)
                             .font(.largeTitle)
                             .padding()
@@ -160,6 +165,8 @@ struct MainView: View {
                     }
                 }
             }
+        }.onAppear() {
+            Task { await presenter.loadCurrencyRates() }
         }
     }
 }

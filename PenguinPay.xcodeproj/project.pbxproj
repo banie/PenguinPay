@@ -24,6 +24,7 @@
 		55299561298A05B600F71466 /* GetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299560298A05B600F71466 /* GetInteractor.swift */; };
 		55299563298A09C600F71466 /* NetworkApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299562298A09C600F71466 /* NetworkApiError.swift */; };
 		55299581298A239200F71466 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299580298A239200F71466 /* URLRequest+Extension.swift */; };
+		55299585298A356900F71466 /* SupportedCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299584298A356900F71466 /* SupportedCountries.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		55299560298A05B600F71466 /* GetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInteractor.swift; sourceTree = "<group>"; };
 		55299562298A09C600F71466 /* NetworkApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiError.swift; sourceTree = "<group>"; };
 		55299580298A239200F71466 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		55299584298A356900F71466 /* SupportedCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedCountries.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			children = (
 				552995532988E57A00F71466 /* Country.swift */,
 				5529955A2989FF7400F71466 /* CurrencyRates.swift */,
+				55299584298A356900F71466 /* SupportedCountries.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				552994ED298821D300F71466 /* MainView.swift in Sources */,
 				552994EB298821D300F71466 /* PenguinPayApp.swift in Sources */,
 				552995512988A60800F71466 /* MainViewPresenter.swift in Sources */,
+				55299585298A356900F71466 /* SupportedCountries.swift in Sources */,
 				55299581298A239200F71466 /* URLRequest+Extension.swift in Sources */,
 				55299563298A09C600F71466 /* NetworkApiError.swift in Sources */,
 			);
