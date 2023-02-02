@@ -27,14 +27,18 @@ class MainViewPresenter: ObservableObject {
         }
     }
     
+    var selectedDialPrefix: String {
+        CallRules().rules[selectedCountry.currencyCode]?.dialPrefix ?? ""
+    }
+    
     private var currencyRates: CurrencyRates?
     
     init(selectedCountry: Country) {
-        self.sendStatus = .idle
-        self.showAlertDone = false
-        self.moneyToBeSent = ""
-        self.moneyForRecepient = ""
         self.selectedCountry = selectedCountry
+        sendStatus = .idle
+        showAlertDone = false
+        moneyToBeSent = ""
+        moneyForRecepient = ""
     }
     
     func addZero() {

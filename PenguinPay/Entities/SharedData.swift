@@ -17,3 +17,10 @@ struct SupportedCountries {
         available[0]
     }
 }
+
+struct CallRules {
+    let rules = ["KES": CallRule(dialPrefix: "+254", nsnLength: [6, 7, 8, 9, 10]),
+                 "NGN": CallRule(dialPrefix: "+234", nsnLength: [7, 8, 9, 10]),
+                 "TZS": CallRule(dialPrefix: "+255", nsnLength: [9]),
+                 "UGX": CallRule(dialPrefix: "+256", nsnLength: [9])]
+}

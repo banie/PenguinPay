@@ -77,10 +77,14 @@ struct MainView: View {
                     Text("Phone number")
                         .font(.subheadline)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    TextField("", text: $phoneNumber)
-                        .keyboardType(.asciiCapableNumberPad)
-                        .frame(maxWidth: .infinity)
-                        .disabled(presenter.sendStatus == .sending)
+                    HStack {
+                        Text(presenter.selectedDialPrefix)
+                            .font(.callout)
+                        TextField("", text: $phoneNumber)
+                            .keyboardType(.asciiCapableNumberPad)
+                            .frame(maxWidth: .infinity)
+                            .disabled(presenter.sendStatus == .sending)
+                    }
                 }.padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
