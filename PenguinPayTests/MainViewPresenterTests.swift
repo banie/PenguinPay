@@ -34,7 +34,7 @@ final class MainViewPresenterTests: XCTestCase {
     func testLoadCurrencyRates() async throws {
         presenter.moneyToBeSent = "10"
         let rate = 124.5
-        getApiMock.currencyRates = CurrencyRates(base: "USD", rates: ["KES" : rate])
+        getApiMock.currencyRates = CurrencyRates(timestamp: Date(), base: "USD", rates: ["KES" : rate])
         await presenter.loadCurrencyRates()
         
         XCTAssertEqual(presenter.moneyForRecepient, String(Int(Double(Int("10", radix: 2) ?? 0) * rate), radix: 2))
@@ -42,7 +42,7 @@ final class MainViewPresenterTests: XCTestCase {
     
     func testAddZero() async throws {
         let rate = 130.5
-        getApiMock.currencyRates = CurrencyRates(base: "USD", rates: ["KES" : rate])
+        getApiMock.currencyRates = CurrencyRates(timestamp: Date(), base: "USD", rates: ["KES" : rate])
         
         await presenter.loadCurrencyRates()
         
@@ -57,7 +57,7 @@ final class MainViewPresenterTests: XCTestCase {
     
     func testAddOne() async throws {
         let rate = 140.5
-        getApiMock.currencyRates = CurrencyRates(base: "USD", rates: ["KES" : rate])
+        getApiMock.currencyRates = CurrencyRates(timestamp: Date(), base: "USD", rates: ["KES" : rate])
         
         await presenter.loadCurrencyRates()
         
@@ -101,4 +101,17 @@ final class MainViewPresenterTests: XCTestCase {
         XCTAssertTrue(presenter.moneyForRecepient.isEmpty)
     }
 
+    @MainActor
+    func testSendDisabled() throws {
+        XCTAssertTrue(presenter.sendIsDisabled)
+        
+        presenter.moneyForRecepient = "11"
+        presenter.moneyToBeSent = "10"
+        
+        XCTAssertFalse(presenter.sendIsDisabled)
+        
+        presenter.sendStatus = .sending
+        
+        XCTAssertTrue(presenter.sendIsDisabled)
+    }
 }

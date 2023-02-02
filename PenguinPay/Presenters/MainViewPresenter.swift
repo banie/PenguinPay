@@ -38,7 +38,11 @@ class MainViewPresenter: ObservableObject {
     
     @MainActor
     var sendIsDisabled: Bool {
-        moneyForRecepient.isEmpty || moneyToBeSent.isEmpty || sendStatus == .sending
+        moneyForRecepient.isEmpty
+        || moneyForRecepient == "0"
+        || moneyToBeSent.isEmpty
+        || moneyToBeSent == "0"
+        || sendStatus == .sending
     }
     
     private(set) var rateTextToDisplay: String

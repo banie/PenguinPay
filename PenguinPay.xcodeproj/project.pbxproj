@@ -127,8 +127,8 @@
 		552994E9298821D300F71466 /* PenguinPay */ = {
 			isa = PBXGroup;
 			children = (
-				5529957F298A236B00F71466 /* Extensions */,
 				552995552989F5A900F71466 /* Resources */,
+				5529957F298A236B00F71466 /* Extensions */,
 				552995522988E56800F71466 /* Entities */,
 				5529953429886DC100F71466 /* Interactors */,
 				5529953329886DA000F71466 /* Presenters */,
