@@ -9,8 +9,8 @@ import Foundation
 
 class GetCountryRatesInteractor: GetInteractor, GetCountryRatesApi {
     
-    init() {
-        super.init(path: "latest.json")
+    init(networkRequestApi: NetworkRequestApi = NetworkRequestInteractor()) {
+        super.init(path: "latest.json", networkRequestApi: networkRequestApi)
     }
     
     func getCurrencyRates() async throws -> CurrencyRates {

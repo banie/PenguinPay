@@ -9,16 +9,16 @@ import Foundation
 
 class GetInteractor {
     
-    let session: URLSession
+    let networkRequestApi: NetworkRequestApi
     let decoder: JSONDecoder
     let baseUrl: String
     let path: String
     
-    init(path: String) {
+    init(path: String, networkRequestApi: NetworkRequestApi) {
         baseUrl = Constants.API.openExchangeRateUrl
-        session = URLSession.shared
         decoder = JSONDecoder()
         self.path = path
+        self.networkRequestApi = networkRequestApi
     }
     
     func get<T>() async throws -> T where T: Decodable {
@@ -37,12 +37,8 @@ class GetInteractor {
         var request = URLRequest(url: composedUrl)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let (data, response) = try await session.data(for: request)
+        let result = try await networkRequestApi.data(for: request)
         
-        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
-            print("status code: \(httpResponse.statusCode), request: \(request.curlString)")
-        }
-        
-        return try decoder.decode(T.self, from: data)
+        return try decoder.decode(T.self, from: result.get())
     }
 }

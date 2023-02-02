@@ -11,7 +11,7 @@
 		552994ED298821D300F71466 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552994EC298821D300F71466 /* MainView.swift */; };
 		552994EF298821D500F71466 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552994EE298821D500F71466 /* Color.xcassets */; };
 		552994F3298821D500F71466 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552994F2298821D500F71466 /* Preview Assets.xcassets */; };
-		552994FD298821D600F71466 /* PenguinPayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552994FC298821D600F71466 /* PenguinPayTests.swift */; };
+		552994FD298821D600F71466 /* GetCountryRatesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552994FC298821D600F71466 /* GetCountryRatesInteractorTests.swift */; };
 		55299507298821D600F71466 /* PenguinPayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299506298821D600F71466 /* PenguinPayUITests.swift */; };
 		55299509298821D600F71466 /* PenguinPayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299508298821D600F71466 /* PenguinPayUITestsLaunchTests.swift */; };
 		552995312988688000F71466 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552995302988688000F71466 /* Images.xcassets */; };
@@ -22,10 +22,12 @@
 		5529955B2989FF7400F71466 /* CurrencyRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529955A2989FF7400F71466 /* CurrencyRates.swift */; };
 		5529955D298A038B00F71466 /* GetCountryRatesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529955C298A038B00F71466 /* GetCountryRatesApi.swift */; };
 		55299561298A05B600F71466 /* GetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299560298A05B600F71466 /* GetInteractor.swift */; };
-		55299563298A09C600F71466 /* NetworkApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299562298A09C600F71466 /* NetworkApiError.swift */; };
 		55299581298A239200F71466 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299580298A239200F71466 /* URLRequest+Extension.swift */; };
 		55299585298A356900F71466 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55299584298A356900F71466 /* SharedData.swift */; };
 		553108F6298B25390041F69E /* CallRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553108F5298B25390041F69E /* CallRule.swift */; };
+		553108F8298B851C0041F69E /* NetworkRequestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553108F7298B851C0041F69E /* NetworkRequestApi.swift */; };
+		553108FA298B891F0041F69E /* NetworkRequestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553108F9298B891F0041F69E /* NetworkRequestInteractor.swift */; };
+		553108FC298B8CF80041F69E /* NetworkRequestApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553108FB298B8CF80041F69E /* NetworkRequestApiMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +55,7 @@
 		552994F0298821D500F71466 /* PenguinPay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PenguinPay.entitlements; sourceTree = "<group>"; };
 		552994F2298821D500F71466 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		552994F8298821D600F71466 /* PenguinPayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PenguinPayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		552994FC298821D600F71466 /* PenguinPayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinPayTests.swift; sourceTree = "<group>"; };
+		552994FC298821D600F71466 /* GetCountryRatesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCountryRatesInteractorTests.swift; sourceTree = "<group>"; };
 		55299502298821D600F71466 /* PenguinPayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PenguinPayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55299506298821D600F71466 /* PenguinPayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinPayUITests.swift; sourceTree = "<group>"; };
 		55299508298821D600F71466 /* PenguinPayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinPayUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -65,10 +67,12 @@
 		5529955A2989FF7400F71466 /* CurrencyRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRates.swift; sourceTree = "<group>"; };
 		5529955C298A038B00F71466 /* GetCountryRatesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCountryRatesApi.swift; sourceTree = "<group>"; };
 		55299560298A05B600F71466 /* GetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInteractor.swift; sourceTree = "<group>"; };
-		55299562298A09C600F71466 /* NetworkApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiError.swift; sourceTree = "<group>"; };
 		55299580298A239200F71466 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		55299584298A356900F71466 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		553108F5298B25390041F69E /* CallRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRule.swift; sourceTree = "<group>"; };
+		553108F7298B851C0041F69E /* NetworkRequestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestApi.swift; sourceTree = "<group>"; };
+		553108F9298B891F0041F69E /* NetworkRequestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestInteractor.swift; sourceTree = "<group>"; };
+		553108FB298B8CF80041F69E /* NetworkRequestApiMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestApiMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +146,8 @@
 		552994FB298821D600F71466 /* PenguinPayTests */ = {
 			isa = PBXGroup;
 			children = (
-				552994FC298821D600F71466 /* PenguinPayTests.swift */,
+				553108FD298B8EDD0041F69E /* Mocks */,
+				552994FC298821D600F71466 /* GetCountryRatesInteractorTests.swift */,
 			);
 			path = PenguinPayTests;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 		5529955E298A058A00F71466 /* interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				553108F7298B851C0041F69E /* NetworkRequestApi.swift */,
 				5529955C298A038B00F71466 /* GetCountryRatesApi.swift */,
 			);
 			path = interfaces;
@@ -215,8 +221,8 @@
 		5529955F298A059800F71466 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				553108F9298B891F0041F69E /* NetworkRequestInteractor.swift */,
 				55299560298A05B600F71466 /* GetInteractor.swift */,
-				55299562298A09C600F71466 /* NetworkApiError.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -227,6 +233,14 @@
 				55299580298A239200F71466 /* URLRequest+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		553108FD298B8EDD0041F69E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				553108FB298B8CF80041F69E /* NetworkRequestApiMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,8 +374,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553108F8298B851C0041F69E /* NetworkRequestApi.swift in Sources */,
 				5529955D298A038B00F71466 /* GetCountryRatesApi.swift in Sources */,
 				552995572989F5C100F71466 /* Constants.swift in Sources */,
+				553108FA298B891F0041F69E /* NetworkRequestInteractor.swift in Sources */,
 				553108F6298B25390041F69E /* CallRule.swift in Sources */,
 				552995542988E57A00F71466 /* Country.swift in Sources */,
 				552995592989FB6400F71466 /* GetCountryRatesInteractor.swift in Sources */,
@@ -372,7 +388,6 @@
 				552995512988A60800F71466 /* MainViewPresenter.swift in Sources */,
 				55299585298A356900F71466 /* SharedData.swift in Sources */,
 				55299581298A239200F71466 /* URLRequest+Extension.swift in Sources */,
-				55299563298A09C600F71466 /* NetworkApiError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +395,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				552994FD298821D600F71466 /* PenguinPayTests.swift in Sources */,
+				552994FD298821D600F71466 /* GetCountryRatesInteractorTests.swift in Sources */,
+				553108FC298B8CF80041F69E /* NetworkRequestApiMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +622,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H488YFWX72;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.banie.PenguinPayTests;
@@ -629,7 +645,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H488YFWX72;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.banie.PenguinPayTests;
@@ -651,7 +667,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H488YFWX72;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.banie.PenguinPayUITests;
@@ -673,7 +689,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H488YFWX72;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.banie.PenguinPayUITests;
