@@ -14,6 +14,10 @@ struct MainView: View {
     @State private var phoneNumber: String = ""
     @State private var selectedCountry = SupportedCountries().defaultSelected
     
+    @FocusState private var isFirstNameFocused: Bool
+    @FocusState private var isLastNameFocused: Bool
+    @FocusState private var isPhoneNumberFocused: Bool
+    
     @ObservedObject var presenter = MainViewPresenter(selectedCountry: SupportedCountries().defaultSelected)
     
     var body: some View {
@@ -51,6 +55,7 @@ struct MainView: View {
                             .keyboardType(.namePhonePad)
                             .frame(maxWidth: .infinity)
                             .disabled(presenter.sendStatus == .sending)
+                            .focused($isFirstNameFocused)
                     }
                     .padding()
                         .overlay(
@@ -66,6 +71,7 @@ struct MainView: View {
                             .keyboardType(.namePhonePad)
                             .frame(maxWidth: .infinity)
                             .disabled(presenter.sendStatus == .sending)
+                            .focused($isLastNameFocused)
                     }
                     .padding()
                         .overlay(
@@ -84,6 +90,7 @@ struct MainView: View {
                             .keyboardType(.asciiCapableNumberPad)
                             .frame(maxWidth: .infinity)
                             .disabled(presenter.sendStatus == .sending)
+                            .focused($isPhoneNumberFocused)
                     }
                 }
                 .padding()
@@ -178,6 +185,11 @@ struct MainView: View {
                 maxHeight: .infinity,
                 alignment: .topLeading
             )
+            .onTapGesture {
+                isFirstNameFocused = false
+                isLastNameFocused = false
+                isPhoneNumberFocused = false
+            }
             .opacity(presenter.sendStatus == .sending ? 0.5 : 1.0)
             .padding(EdgeInsets(top: 20, leading: 20, bottom: 10, trailing: 20))
             .navigationBarTitleDisplayMode(.inline)
