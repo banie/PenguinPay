@@ -22,20 +22,24 @@ class MainViewPresenter: ObservableObject {
     @Published var moneyToBeSent: String
     @Published var moneyForRecepient: String
     
+    @MainActor
     var selectedCountry: Country {
         didSet {
             updateRecepientMoney()
         }
     }
     
+    @MainActor
     var selectedCallRule: CallRule? {
         CallRules().rules[selectedCountry.currencyCode]
     }
     
     private var currencyRates: CurrencyRates?
+    private let getCurrencyRatesApi: GetCurrencyRatesApi
     
-    init(selectedCountry: Country) {
+    init(selectedCountry: Country, getCurrencyRatesApi: GetCurrencyRatesApi = GetCurrencyRatesInteractor()) {
         self.selectedCountry = selectedCountry
+        self.getCurrencyRatesApi = getCurrencyRatesApi
         sendStatus = .idle
         showAlertDone = false
         showAlertBadPhoneNumber = false
@@ -43,11 +47,13 @@ class MainViewPresenter: ObservableObject {
         moneyForRecepient = ""
     }
     
+    @MainActor
     func addZero() {
         moneyToBeSent += "0"
         updateRecepientMoney()
     }
     
+    @MainActor
     func addOne() {
         moneyToBeSent += "1"
         updateRecepientMoney()
@@ -55,13 +61,17 @@ class MainViewPresenter: ObservableObject {
     
     func loadCurrencyRates() async {
         do {
-            let getCurrencyRatesInteractor = GetCountryRatesInteractor()
-            currencyRates = try await getCurrencyRatesInteractor.getCurrencyRates()
+            currencyRates = try await getCurrencyRatesApi.getCurrencyRates()
         } catch {
             print("Failed in fetching currency rates, error: \(error)")
         }
+        
+        await MainActor.run {
+            updateRecepientMoney()
+        }
     }
     
+    @MainActor
     func sendMoneyTo(firstName: String, lastName: String, nsn: String) {
         guard selectedCallRule?.nsnLengths.contains(nsn.count) ?? false else {
             showAlertBadPhoneNumber = true
@@ -77,6 +87,7 @@ class MainViewPresenter: ObservableObject {
         }
     }
     
+    @MainActor
     private func updateRecepientMoney() {
         guard let currencyRates = currencyRates,
             let rate = currencyRates.rates[selectedCountry.currencyCode] else {

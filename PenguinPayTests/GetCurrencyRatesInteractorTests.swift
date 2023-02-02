@@ -1,5 +1,5 @@
 //
-//  PenguinPayTests.swift
+//  GetCurrencyRatesInteractorTests.swift
 //  PenguinPayTests
 //
 //  Created by Banie Setijoso on 2023-01-30.
@@ -8,14 +8,14 @@
 import XCTest
 @testable import PenguinPay
 
-final class GetCountryRatesInteractorTests: XCTestCase {
+final class GetCurrencyRatesInteractorTests: XCTestCase {
     
     private var apiMock: NetworkRequestApiMock!
-    private var interactor: GetCountryRatesInteractor!
+    private var interactor: GetCurrencyRatesInteractor!
 
     override func setUpWithError() throws {
         apiMock = NetworkRequestApiMock()
-        interactor = GetCountryRatesInteractor(networkRequestApi: apiMock)
+        interactor = GetCurrencyRatesInteractor(networkRequestApi: apiMock)
     }
 
     override func tearDownWithError() throws {
@@ -54,8 +54,8 @@ final class GetCountryRatesInteractorTests: XCTestCase {
         }
         
         let currencyRates = try await interactor.getCurrencyRates()
-        XCTAssertEqual("USD", currencyRates.base)
-        XCTAssertEqual(3.672992, currencyRates.rates["AED"])
+        XCTAssertEqual("USD", currencyRates?.base)
+        XCTAssertEqual(3.672992, currencyRates?.rates["AED"])
         
         wait(for: [requestExpectation], timeout: 1)
     }

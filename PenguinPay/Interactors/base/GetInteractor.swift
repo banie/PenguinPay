@@ -21,7 +21,7 @@ class GetInteractor {
         self.networkRequestApi = networkRequestApi
     }
     
-    func get<T>() async throws -> T where T: Decodable {
+    func get<T>() async throws -> T? where T: Decodable {
         guard let url = URL(string: path, relativeTo: URL(string: baseUrl)),
               var urlComponent = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             throw NetworkApiError.urlIsInvalid
@@ -39,6 +39,11 @@ class GetInteractor {
         
         let result = try await networkRequestApi.data(for: request)
         
-        return try decoder.decode(T.self, from: result.get())
+        switch result {
+        case .success(let data):
+            return try decoder.decode(T.self, from: data)
+        case .failure(_):
+            return nil
+        }
     }
 }
