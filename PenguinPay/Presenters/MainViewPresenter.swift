@@ -82,9 +82,14 @@ class MainViewPresenter: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.showAlertDone = true
             self?.sendStatus = .idle
-            self?.moneyForRecepient = ""
-            self?.moneyToBeSent = ""
+            self?.clearMoney()
         }
+    }
+    
+    @MainActor
+    func clearMoney() {
+        moneyForRecepient = ""
+        moneyToBeSent = ""
     }
     
     @MainActor

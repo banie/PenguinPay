@@ -90,5 +90,15 @@ final class MainViewPresenterTests: XCTestCase {
         
         wait(for: [requestExpectation], timeout: 2)
     }
+    
+    @MainActor
+    func testClearMoney() throws {
+        presenter.moneyToBeSent = "10"
+        presenter.moneyForRecepient = "101"
+        
+        presenter.clearMoney()
+        XCTAssertTrue(presenter.moneyToBeSent.isEmpty)
+        XCTAssertTrue(presenter.moneyForRecepient.isEmpty)
+    }
 
 }

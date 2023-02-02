@@ -124,9 +124,19 @@ struct MainView: View {
                         }
 
                 VStack {
-                    Text("You send")
-                        .font(.subheadline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack {
+                        Text("You send")
+                            .font(.subheadline)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        if presenter.moneyToBeSent.isEmpty == false {
+                            Button(action: {
+                                presenter.clearMoney()
+                            }, label: {
+                                Image(systemName: "clear")
+                                    .foregroundColor(.primary)
+                            })
+                        }
+                    }
                     TextField("", text: $presenter.moneyToBeSent)
                         .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -176,7 +186,8 @@ struct MainView: View {
                         .background(.yellow)
                         .cornerRadius(20)
                 })
-                .disabled(presenter.sendStatus == .sending)
+                .opacity(presenter.moneyToBeSent.isEmpty ? 0.5 : 1.0)
+                .disabled(presenter.moneyToBeSent.isEmpty || presenter.sendStatus == .sending)
             }
             .frame(
                 minWidth: 0,
