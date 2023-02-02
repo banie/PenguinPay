@@ -8,6 +8,7 @@
 import Foundation
 
 struct CurrencyRates: Codable {
+    let timestamp: Date
     let base: String
     let rates: [String: Double]
 }

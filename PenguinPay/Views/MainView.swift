@@ -44,8 +44,15 @@ struct MainView: View {
                     }
                     .disabled(presenter.sendStatus == .sending)
                 }
-                Text("Recipient")
-                    .font(.subheadline)
+                HStack {
+                    Text("Recipient")
+                        .font(.subheadline)
+                    Spacer()
+                    Text(presenter.rateTextToDisplay)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
                 HStack {
                     VStack {
                         Text("First name")

@@ -25,6 +25,7 @@ class MainViewPresenter: ObservableObject {
     @MainActor
     var selectedCountry: Country {
         didSet {
+            updateRateToDisplay()
             updateRecepientMoney()
         }
     }
@@ -33,6 +34,8 @@ class MainViewPresenter: ObservableObject {
     var selectedCallRule: CallRule? {
         CallRules().rules[selectedCountry.currencyCode]
     }
+    
+    private(set) var rateTextToDisplay: String
     
     private var currencyRates: CurrencyRates?
     private let getCurrencyRatesApi: GetCurrencyRatesApi
@@ -45,6 +48,7 @@ class MainViewPresenter: ObservableObject {
         showAlertBadPhoneNumber = false
         moneyToBeSent = ""
         moneyForRecepient = ""
+        rateTextToDisplay = ""
     }
     
     @MainActor
@@ -67,6 +71,7 @@ class MainViewPresenter: ObservableObject {
         }
         
         await MainActor.run {
+            updateRateToDisplay()
             updateRecepientMoney()
         }
     }
@@ -93,13 +98,29 @@ class MainViewPresenter: ObservableObject {
     }
     
     @MainActor
+    private func updateRateToDisplay() {
+        guard let rate = currencyRates?.rates[selectedCountry.currencyCode],
+            let date = currencyRates?.timestamp else {
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM''d - h:mm a"
+        let dateToDisplay = dateFormatter.string(from: date)
+        rateTextToDisplay = String(format: "As of %@, 1 Dollar Binaria is equal to %@ %@", dateToDisplay, convert(binary: "1", rate: rate), selectedCountry.currencyCode)
+    }
+    
+    @MainActor
     private func updateRecepientMoney() {
-        guard let currencyRates = currencyRates,
-            let rate = currencyRates.rates[selectedCountry.currencyCode] else {
+        guard let rate = currencyRates?.rates[selectedCountry.currencyCode] else {
             moneyForRecepient = moneyToBeSent
             return
         }
         
-        moneyForRecepient = String(Int(Double(Int(moneyToBeSent, radix: 2) ?? 0) * rate), radix: 2)
+        moneyForRecepient = convert(binary: moneyToBeSent, rate: rate)
+    }
+    
+    private func convert(binary: String, rate: Double) -> String {
+        String(Int(Double(Int(binary, radix: 2) ?? 0) * rate), radix: 2)
     }
 }
