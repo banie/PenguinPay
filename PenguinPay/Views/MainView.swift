@@ -78,18 +78,24 @@ struct MainView: View {
                         .font(.subheadline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     HStack {
-                        Text(presenter.selectedDialPrefix)
+                        Text(presenter.selectedCallRule?.dialPrefix ?? "")
                             .font(.callout)
                         TextField("", text: $phoneNumber)
                             .keyboardType(.asciiCapableNumberPad)
                             .frame(maxWidth: .infinity)
                             .disabled(presenter.sendStatus == .sending)
                     }
-                }.padding()
+                }
+                .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(.secondary, lineWidth: 1)
                     )
+                    .alert("Please enter a correct phone number", isPresented: $presenter.showAlertBadPhoneNumber) {
+                            Button("OK", role: .cancel) {
+                                presenter.showAlertBadPhoneNumber = false
+                            }
+                        }
                 
                 VStack {
                     Text(String(format: "They will receive in %@", selectedCountry.currencyCode))
@@ -153,7 +159,7 @@ struct MainView: View {
                 }
                 
                 Button(action: {
-                    presenter.sendMoney()
+                    presenter.sendMoneyTo(firstName: firstName, lastName: lastName, nsn: phoneNumber)
                 }, label: {
                     Text("Send")
                         .frame(maxWidth: .infinity)

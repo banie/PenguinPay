@@ -18,6 +18,7 @@ class MainViewPresenter: ObservableObject {
     
     @Published var sendStatus: SendStatus
     @Published var showAlertDone: Bool
+    @Published var showAlertBadPhoneNumber: Bool
     @Published var moneyToBeSent: String
     @Published var moneyForRecepient: String
     
@@ -27,8 +28,8 @@ class MainViewPresenter: ObservableObject {
         }
     }
     
-    var selectedDialPrefix: String {
-        CallRules().rules[selectedCountry.currencyCode]?.dialPrefix ?? ""
+    var selectedCallRule: CallRule? {
+        CallRules().rules[selectedCountry.currencyCode]
     }
     
     private var currencyRates: CurrencyRates?
@@ -37,6 +38,7 @@ class MainViewPresenter: ObservableObject {
         self.selectedCountry = selectedCountry
         sendStatus = .idle
         showAlertDone = false
+        showAlertBadPhoneNumber = false
         moneyToBeSent = ""
         moneyForRecepient = ""
     }
@@ -60,7 +62,12 @@ class MainViewPresenter: ObservableObject {
         }
     }
     
-    func sendMoney() {
+    func sendMoneyTo(firstName: String, lastName: String, nsn: String) {
+        guard selectedCallRule?.nsnLengths.contains(nsn.count) ?? false else {
+            showAlertBadPhoneNumber = true
+            return
+        }
+        
         sendStatus = .sending
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.showAlertDone = true

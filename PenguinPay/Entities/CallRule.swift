@@ -9,5 +9,5 @@ import Foundation
 
 struct CallRule {
     let dialPrefix: String
-    let nsnLength: [Int]
+    let nsnLengths: [Int]
 }
