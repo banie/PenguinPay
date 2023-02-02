@@ -88,6 +88,12 @@ struct MainView: View {
                                 .stroke(.secondary, lineWidth: 1)
                         )
                 }
+                .alert("Failed in getting the latest currency rates, please try again later", isPresented: $presenter.showAlertFailedFetchingRates) {
+                            Button("OK", role: .cancel) {
+                                presenter.showAlertFailedFetchingRates = false
+                            }
+                        }
+                
                 VStack {
                     Text("Phone number")
                         .font(.subheadline)
@@ -197,8 +203,8 @@ struct MainView: View {
                         .background(.yellow)
                         .cornerRadius(20)
                 })
-                .opacity(presenter.moneyToBeSent.isEmpty ? 0.5 : 1.0)
-                .disabled(presenter.moneyToBeSent.isEmpty || presenter.sendStatus == .sending)
+                .opacity(presenter.sendIsDisabled ? 0.5 : 1.0)
+                .disabled(presenter.sendIsDisabled)
             }
             .frame(
                 minWidth: 0,

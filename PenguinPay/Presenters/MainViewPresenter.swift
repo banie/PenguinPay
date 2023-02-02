@@ -19,6 +19,7 @@ class MainViewPresenter: ObservableObject {
     @Published var sendStatus: SendStatus
     @Published var showAlertDone: Bool
     @Published var showAlertBadPhoneNumber: Bool
+    @Published var showAlertFailedFetchingRates: Bool
     @Published var moneyToBeSent: String
     @Published var moneyForRecepient: String
     
@@ -35,9 +36,14 @@ class MainViewPresenter: ObservableObject {
         CallRules().rules[selectedCountry.currencyCode]
     }
     
-    private(set) var rateTextToDisplay: String
+    @MainActor
+    var sendIsDisabled: Bool {
+        moneyForRecepient.isEmpty || moneyToBeSent.isEmpty || sendStatus == .sending
+    }
     
-    private var currencyRates: CurrencyRates?
+    private(set) var rateTextToDisplay: String
+    private(set) var currencyRates: CurrencyRates?
+    
     private let getCurrencyRatesApi: GetCurrencyRatesApi
     
     init(selectedCountry: Country, getCurrencyRatesApi: GetCurrencyRatesApi = GetCurrencyRatesInteractor()) {
@@ -46,6 +52,7 @@ class MainViewPresenter: ObservableObject {
         sendStatus = .idle
         showAlertDone = false
         showAlertBadPhoneNumber = false
+        showAlertFailedFetchingRates = false
         moneyToBeSent = ""
         moneyForRecepient = ""
         rateTextToDisplay = ""
@@ -68,6 +75,9 @@ class MainViewPresenter: ObservableObject {
             currencyRates = try await getCurrencyRatesApi.getCurrencyRates()
         } catch {
             print("Failed in fetching currency rates, error: \(error)")
+            await MainActor.run {
+                showAlertFailedFetchingRates = true
+            }
         }
         
         await MainActor.run {
@@ -113,7 +123,7 @@ class MainViewPresenter: ObservableObject {
     @MainActor
     private func updateRecepientMoney() {
         guard let rate = currencyRates?.rates[selectedCountry.currencyCode] else {
-            moneyForRecepient = moneyToBeSent
+            moneyForRecepient = ""
             return
         }
         
