@@ -56,6 +56,7 @@ struct MainView: View {
                             .frame(maxWidth: .infinity)
                             .disabled(presenter.sendStatus == .sending)
                             .focused($isFirstNameFocused)
+                            .minimumScaleFactor(0.4)
                     }
                     .padding()
                         .overlay(
@@ -72,6 +73,7 @@ struct MainView: View {
                             .frame(maxWidth: .infinity)
                             .disabled(presenter.sendStatus == .sending)
                             .focused($isLastNameFocused)
+                            .minimumScaleFactor(0.4)
                     }
                     .padding()
                         .overlay(
@@ -112,6 +114,7 @@ struct MainView: View {
                         .font(.title2)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .disabled(true)
+                        .minimumScaleFactor(0.4)
                 }
                 .padding()
                 .alert("Your money has been sent", isPresented: $presenter.showAlertDone) {
@@ -141,6 +144,7 @@ struct MainView: View {
                         .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .disabled(true)
+                        .minimumScaleFactor(0.4)
                 }
                 .padding()
                     .overlay(
