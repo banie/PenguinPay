@@ -1,4 +1,7 @@
 # PenguinPay
+
+This app is a take home project requested by Sendwave, Inc. To be completed in a few days. The list of requirements is listed in 2022_Mobile_Engineer_Interview_Project_(Take_Home_Test)__Penguin_Pay_(2).pdf
+
 Notes:
 - Please set the Team value in the Signing & Capabilities to your own in order to deploy to device
 - Set to portrait only to avoid UI mishaps in landscape
