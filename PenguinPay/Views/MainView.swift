@@ -232,7 +232,7 @@ struct MainView: View {
                 }
             }
         }.onAppear() {
-            Task { await presenter.loadCurrencyRates() }
+            Task.detached { await presenter.loadCurrencyRates() }
         }
     }
 }
